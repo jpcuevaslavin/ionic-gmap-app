@@ -1,14 +1,12 @@
-<div id="map" data-tap-disabled="true"></div>
-<script>
-	function initMap() {
-    var uluru = {lat: -33.385064, lng: -70.566533};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 16,
-      center: uluru
-    });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
-    });
-  };
-</script>
+<ng-map center="{{Locations.currentLocation}}">
+	<marker position="{{Locations.currentLocation}}" title="Hola mundo!"></marker>
+</ng-map>
+
+<button ng-repeat="location in Locations.data" class="button button-full icon-right ion-chevron-right button-calm" ng-click="Locations.moverMapa(location)" ng-style="{
+'background-color': Locations.selected == location._id ? 'none': 'rgba(0,0,0,0.5)'
+}">
+<strong>{{location.name}}</strong>
+{{location.coords[0].latitude}},
+{{location.coords[0].longitude}}
+</button>
+
